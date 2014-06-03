@@ -5,10 +5,16 @@
   "content_scripts":[
 	  {
 		"matches": ["http://www.sputnikmusic.com/review/*"],
-		"js": ["jquery.js","popup.js","contentscript.js"]
+		"js": ["jquery.js","popup.js","contentscript.js"],
+		"run_at":"document_end"
 	  
 	  }
   ],
+  	"background":{
+		"scripts":["eventPage.js"],
+		"persistent":false
+	},
+
   "description": "An extension that streams songs based on the current SputnikMusic reivew you're looking at.",
   "version": "1.0",
 

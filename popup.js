@@ -1,71 +1,43 @@
 
-var pageurl = null;
 
-$(document).ready(function(){
-					
-					var myCall=function(){
-										 
-										 var flag;
-										
-										 var regexp='http://www.sputnikmusic.com/review/';
-										// localhost/satellilte/repro.php
-										
+
+$(function(){
+									 
+	var flag;
+	var pageurl = null;						
+	var regexp='http://www.sputnikmusic.com/review/';
+	// localhost/satellilte/repro.php
+								
 											
-										chrome.tabs.query({active: true,currentWindow:true}, function (tabs) {
-											pageurl = tabs[0].url;
-											flag=pageurl.match(regexp);
-												document.write(pageurl);
-												document.write("<br>");
+	chrome.tabs.query({active: true,currentWindow:true}, function (tabs) {
+		pageurl = tabs[0].url;
+		flag=pageurl.match(regexp);
+		document.write(pageurl);
+		document.write("<br>");
 												
-												if(flag == 'http://www.sputnikmusic.com/review/')
-												{
-															//document.write("Sucess");
+		if(flag == 'http://www.sputnikmusic.com/review/')
+		{
+			document.write("Sucess");
+			//request  "http://mother.herokuapp.com/repro.php"
+			chrome.runtime.sendMessage({method:'getTitle'}, function(response){
+			 document.write("<br>"); 
+			  document.write(response);
+			});
+				
+										
+		}
+		else
+		{
+			document.write("\n You are not on Sputnik Music");
 														
-															//request  "http://mother.herokuapp.com/repro.php"
-																
+		}
 										
-												}
-												else
-												{
-														document.write("\n You are not on Sputnik Music");
-														
-												}
-										
-										
-										});
-										
-			
-											
-												
-					}	
-							
-					myCall();
-					
-					
-										
-												//write_result(pageurl);
-												var request = $.ajax({
-													url: "http://localhost/satellilte/repro.php",
-													data: {URL : pageurl},
-													type: "POST",            
-													dataType: "html",
-													crossDomain: true
-													
-												
-												});		
-												request.done(function(msg) {
-													$("#mybox").html(msg);          
-												});
-							 
-												request.fail(function(jqXHR, textStatus) {
-													alert( "Request failed: " + textStatus );
-												});
-											
-										
-											
+	});									
 	
 										
-	});
+
+										
+});
 			 
 				
 
