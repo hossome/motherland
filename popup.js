@@ -7,7 +7,7 @@ $(function(){
 	var pageurl = null;						
 	var regexp='http://www.sputnikmusic.com/review/';
 	// localhost/satellilte/repro.php
-								
+	var info;							
 											
 	chrome.tabs.query({active: true,currentWindow:true}, function (tabs) {
 		pageurl = tabs[0].url;
@@ -20,9 +20,11 @@ $(function(){
 			document.write("Sucess");
 			//request  "http://mother.herokuapp.com/repro.php"
 			chrome.runtime.sendMessage({method:'getTitle'}, function(response){
-			 document.write("<br>"); 
-			  document.write(response);
-			});
+			  document.write("<br>"); 
+			 // document.write(response); 
+				info=response;
+				console.log(response);
+		});
 				
 										
 		}

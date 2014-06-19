@@ -5,8 +5,10 @@
   "content_scripts":[
 	  {
 		"matches": ["http://www.sputnikmusic.com/review/*"],
-		"js": ["jquery.js","popup.js","contentscript.js"],
-		"run_at":"document_end"
+		"js": ["jquery.js","GroovesharkProxy.js","popup.js","contentscript.js"],
+		"run_at":"document_end",
+		"css": ["mystyle.css"]
+		
 	  
 	  }
   ],
